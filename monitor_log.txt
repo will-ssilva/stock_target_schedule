@@ -1,0 +1,8 @@
+[2025-04-14 15:46:14] 📊 Ranking de oportunidades:
+[2025-04-14 15:46:14] KLBN4: Atual R$ 3.65 | Min R$ 3.56 | Max R$ 4.67 | Índice 0.2568
+[2025-04-14 15:50:14] 📊 Ranking de oportunidades:
+[2025-04-14 15:50:14] KLBN4: Atual R$ 3.64 | Min R$ 3.56 | Max R$ 4.67 | Índice 0.2626
+[2025-04-14 15:50:22] 📊 Ranking de oportunidades:
+[2025-04-14 15:50:22] KLBN4: Atual R$ 3.64 | Min R$ 3.56 | Max R$ 4.67 | Índice 0.2626
+[2025-04-14 15:52:43] 📊 Ranking de oportunidades:
+[2025-04-14 15:52:43] KLBN4: Atual R$ 3.64 | Min R$ 3.56 | Max R$ 4.67 | Índice 0.2626

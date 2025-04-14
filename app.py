@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import Acao, Session
-from monitor import monitorar
+from monitor import monitorar, calcular_indices_acoes
 import subprocess
 import os
 
@@ -17,8 +17,9 @@ def index():
 def add():
     ticker = request.form['ticker'].upper()
     alvo = float(request.form['alvo'])
+    preco_max = float(request.form['preco_max'])
     session = Session()
-    nova_acao = Acao(ticker=ticker, alvo=alvo)
+    nova_acao = Acao(ticker=ticker, alvo=alvo, preco_max=preco_max)
     session.add(nova_acao)
     session.commit()
     session.close()
@@ -38,6 +39,11 @@ def delete(acao_id):
 def executar_monitor():
     monitorar()
     return redirect(url_for('index'))
+
+@app.route("/ranking")
+def ranking():
+    acoes = calcular_indices_acoes()
+    return render_template("indices.html", acoes=acoes)
 
 @app.route('/executar_monitor_sub', methods=['POST'])
 def executar_monitor_sub():
