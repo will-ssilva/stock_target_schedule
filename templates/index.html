@@ -41,5 +41,40 @@
             {% endfor %}
         </tbody>
     </table>
+    <form action="{{ url_for('executar_monitor') }}" method="post" id="monitorForm" style="margin-top: 20px;">
+        <button type="submit" id="atualizarBtn" class="btn btn-primary">
+            <span id="btnText">🚀 Atualizar Alvos</span>
+            <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+        </button>
+    </form>
+    
+    <div id="successAlert" class="alert alert-success mt-3 d-none" role="alert">
+        Monitoramento iniciado com sucesso!
+    </div>
+    
+    <script>
+        const form = document.getElementById('monitorForm');
+        const button = document.getElementById('atualizarBtn');
+        const text = document.getElementById('btnText');
+        const spinner = document.getElementById('btnSpinner');
+        const alert = document.getElementById('successAlert');
+    
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            button.disabled = true;
+            text.textContent = "Atualizando...";
+            spinner.classList.remove('d-none');
+    
+            fetch(form.action, {
+                method: "POST"
+            }).then(() => {
+                text.textContent = "🚀 Atualizar Alvos";
+                spinner.classList.add('d-none');
+                button.disabled = false;
+                alert.classList.remove('d-none');
+                setTimeout(() => alert.classList.add('d-none'), 4000);
+            });
+        });
+    </script>      
 </body>
 </html>
