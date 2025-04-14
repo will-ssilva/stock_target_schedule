@@ -8,6 +8,7 @@ class Acao(Base):
     id = Column(Integer, primary_key=True)
     ticker = Column(String, nullable=False)
     alvo = Column(Float, nullable=False)
+    preco_max = Column(Float) 
 
 engine = create_engine('sqlite:///stocks.db')
 Base.metadata.create_all(engine)
