@@ -40,7 +40,7 @@ def executar_monitor():
     return redirect(url_for('index'))
 
 @app.route('/executar_monitor_sub', methods=['POST'])
-def executar_monitor():
+def executar_monitor_sub():
     script_path = os.path.join(os.path.dirname(__file__), 'monitor.py')
     subprocess.Popen(['python', script_path])
     return redirect(url_for('index'))
