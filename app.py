@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 from models import Acao, Session
 from monitor import monitorar, calcular_indices_acoes
 import subprocess
 import os
+
+TOKEN_SECRETO = 'tkn89345'
 
 app = Flask(__name__)
 
@@ -35,9 +37,14 @@ def delete(acao_id):
     session.close()
     return redirect(url_for('index'))
 
-@app.route('/executar_monitor', methods=['POST'])
+@app.route('/executar_monitor', methods=['GET', 'POST'])
 def executar_monitor():
     monitorar()
+    if request.method == 'GET':
+        token = request.args.get('token')
+        if token != TOKEN_SECRETO:
+            abort(403)  # Proibido
+        return "✅ Monitoramento executado com sucesso via GET"
     return redirect(url_for('index'))
 
 @app.route("/ranking")
