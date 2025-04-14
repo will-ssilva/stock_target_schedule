@@ -72,16 +72,6 @@ def calcular_indices_acoes():
     # Ordenar por índice de compra (melhores oportunidades no topo)
     lista_ordenada = sorted(lista_resultado, key=lambda x: x["indice_compra"], reverse=True)
 
-    # Logar ou enviar para Telegram
-    log_mensagem("📊 Ranking de oportunidades:")
-    for acao in lista_ordenada:
-        msg = (
-            f"{acao['ticker']}: Atual R$ {acao['patual']} | "
-            f"Min R$ {acao['pmin']} | Max R$ {acao['pmax']} | "
-            f"Índice {acao['indice_compra']}"
-        )
-        log_mensagem(msg)
-
     session.close()
     return lista_ordenada
 
