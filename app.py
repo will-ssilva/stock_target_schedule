@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import Acao, Session
 import subprocess
+import os
 
 app = Flask(__name__)
 
@@ -34,7 +35,8 @@ def delete(acao_id):
 
 @app.route('/executar_monitor', methods=['POST'])
 def executar_monitor():
-    subprocess.Popen(['python3', 'monitor.py'])  # Ou 'python' se preferir
+    script_path = os.path.join(os.path.dirname(__file__), 'monitor.py')
+    subprocess.Popen(['python', script_path])
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

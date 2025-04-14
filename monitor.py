@@ -1,9 +1,15 @@
 import yfinance as yf
 import requests
 from models import Acao, Session
+from datetime import datetime
 
 TELEGRAM_TOKEN = '6545143551:AAERwgvGGmvVdD2L1N2vKbPkitXbOC9pOng'
 CHAT_ID = '1586721273'
+LOG_FILE = 'monitor_log.txt'
+
+def log_mensagem(mensagem):
+    with open(LOG_FILE, 'a', encoding='utf-8') as f:
+        f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {mensagem}\n")
 
 def obter_preco(acao):
     ticker = yf.Ticker(f'{acao}.SA')
@@ -24,8 +30,10 @@ def monitorar():
             if preco <= acao.alvo:
                 mensagem = f"🚨 {acao.ticker} atingiu R$ {preco:.2f} (alvo: R$ {acao.alvo:.2f})"
                 enviar_telegram(mensagem)
+                log_mensagem(mensagem)
         except Exception as e:
             print(f"Erro ao verificar {acao.ticker}: {e}")
+    log_mensagem("Sem alvos atingidos")
     session.close()
 
 if __name__ == '__main__':
