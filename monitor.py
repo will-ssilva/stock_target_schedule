@@ -6,7 +6,7 @@ TELEGRAM_TOKEN = '6545143551:AAERwgvGGmvVdD2L1N2vKbPkitXbOC9pOng'
 CHAT_ID = '1586721273'
 
 def obter_preco(acao):
-    ticker = yf.Ticker(acao)
+    ticker = yf.Ticker(f'{acao}.SA')
     preco_atual = ticker.history(period='1d')['Close'].iloc[-1]
     return preco_atual
 

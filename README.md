@@ -32,5 +32,5 @@ Além disso, o projeto inclui uma interface web em Flask para adicionar/remover 
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/acao-monitor.git
-cd acao-monitor
+git clone https://github.com/will-ssilva/stock_target_schedule.git
+cd stock_target_schedule
