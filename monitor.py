@@ -67,7 +67,9 @@ def calcular_indices_acoes():
                 "indice_compra": indice
             })
         except Exception as e:
+            log_mensagem(e)
             print(f"Erro ao processar {acao.ticker}: {e}")
+            return False
 
     # Ordenar por índice de compra (melhores oportunidades no topo)
     lista_ordenada = sorted(lista_resultado, key=lambda x: x["indice_compra"], reverse=True)
